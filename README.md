@@ -1,18 +1,71 @@
-# \# Flutter Responsive Dashboard
+# Flutter Responsive Dashboard
 
-# 
+A modern, fully responsive dashboard UI built with Flutter as part of a Flutter Developer assignment. The application is designed for office management and adapts seamlessly across mobile, tablet, and desktop screens.
 
-# A responsive dashboard built using Flutter.
+## ✨ Features
 
-# 
+* Responsive layout for Mobile, Tablet & Web
+* Modern dashboard interface
+* Sidebar navigation
+* Search bar
+* Project overview cards
+* Team members section
+* Calendar widget
+* Performance analytics chart
+* Birthday & Anniversary panels
+* Clean and reusable widget structure
 
-# \## Features
+## 📱 Responsive Design
 
-# \- Mobile Layout
+The application has been optimized for:
 
-# \- Tablet Layout
+* 📱 Mobile
+* 📲 Tablet
+* 💻 Desktop / Web
 
-# \- Web Layout
+## 🛠 Tech Stack
 
-# \- Responsive UI
+* Flutter
+* Dart
 
+## 🚀 Live Demo
+
+**Live URL:** *(Add your Firebase/Vercel link here)*
+
+## 📸 Screenshots
+
+Add screenshots of the dashboard here.
+
+## ⚙️ Getting Started
+
+Clone the repository:
+
+```bash
+git clone https://github.com/sachin-kumar-flutter/flutter-responsive-dashboard.git
+```
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
+
+Run the application:
+
+```bash
+flutter run
+```
+
+For Web:
+
+```bash
+flutter run -d chrome
+```
+
+
+
+## 👨‍💻 Author
+
+**Sachin Kumar**
+
+GitHub: https://github.com/sachin-kumar-flutter
