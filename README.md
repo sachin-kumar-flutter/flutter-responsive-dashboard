@@ -30,11 +30,9 @@ The application has been optimized for:
 
 ## 🚀 Live Demo
 
-**Live URL:** *(Add your Firebase/Vercel link here)*
+**Live URL:** *https://flutter-responsive-dashb-9a38d.web.app/*
 
-## 📸 Screenshots
 
-Add screenshots of the dashboard here.
 
 ## ⚙️ Getting Started
 
