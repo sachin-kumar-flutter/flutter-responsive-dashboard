@@ -20,7 +20,7 @@ class PerformanceCard extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -138,7 +138,7 @@ class PerformanceCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
 
           // Line Chart View inside a Stack (conditional sizing: Expanded vs SizedBox)
           isExpanded
@@ -146,7 +146,7 @@ class PerformanceCard extends StatelessWidget {
                   child: _buildChartStack(),
                 )
               : SizedBox(
-                  height: 180, // Slightly more compact for scrollable layouts
+                  height: 160, // Compressed height
                   child: _buildChartStack(),
                 ),
         ],
@@ -162,10 +162,10 @@ class PerformanceCard extends StatelessWidget {
         // Left titles reserved size is 28. Right margin padding is around 16.
         final double leftOffset = 28 + (width - 44) * (3.0 / 5.2);
         
-        // Calculate dynamic vertical height for the curve dot at 2018 (y=30.0)
-        final double height = isExpanded ? constraints.maxHeight : 180;
+        // Calculate dynamic vertical height for the curve dot at 2018 (y=45.0)
+        final double height = isExpanded ? constraints.maxHeight : 160;
         final double drawingHeight = height - 30; // 30 is bottomTitle reserved size
-        const double purpleValueAt2018 = 30.0;
+        const double purpleValueAt2018 = 45.0;
         final double dotTop = drawingHeight - (purpleValueAt2018 / 50.0) * drawingHeight;
 
         return Stack(
@@ -192,12 +192,16 @@ class PerformanceCard extends StatelessWidget {
                       reservedSize: 28,
                       getTitlesWidget: (value, meta) {
                         if (value >= 0 && value <= 50) {
-                          return Text(
-                            value.toInt().toString(),
-                            style: TextStyle(
-                              color: Colors.grey.shade400,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                          return SideTitleWidget(
+                            meta: meta,
+                            space: 6,
+                            child: Text(
+                              value.toInt().toString(),
+                              style: TextStyle(
+                                color: Colors.grey.shade400,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           );
                         }
@@ -255,8 +259,8 @@ class PerformanceCard extends StatelessWidget {
                 borderData: FlBorderData(
                   show: true,
                   border: Border(
-                    left: BorderSide(color: Colors.grey.shade200, width: 1),
-                    bottom: BorderSide(color: Colors.grey.shade200, width: 1),
+                    left: BorderSide(color: Colors.grey.shade200, width: 1), // Solid vertical left line
+                    bottom: BorderSide(color: Colors.grey.shade200, width: 1), // Solid horizontal bottom line
                     right: BorderSide.none,
                     top: BorderSide.none,
                   ),
@@ -270,15 +274,13 @@ class PerformanceCard extends StatelessWidget {
                   LineChartBarData(
                     spots: const [
                       FlSpot(0.0, 32),
-                      FlSpot(0.4, 38),
-                      FlSpot(0.9, 24),
-                      FlSpot(1.4, 10),
-                      FlSpot(2.0, 20),
-                      FlSpot(2.5, 42),
-                      FlSpot(3.0, 30),
-                      FlSpot(3.5, 10),
-                      FlSpot(4.0, 22),
-                      FlSpot(4.7, 50),
+                      FlSpot(0.5, 38),
+                      FlSpot(1.0, 25),
+                      FlSpot(1.6, 10),
+                      FlSpot(2.0, 15),
+                      FlSpot(3.1, 42),
+                      FlSpot(4.1, 10),
+                      FlSpot(5.0, 49),
                       FlSpot(5.2, 28),
                     ],
                     isCurved: true,
@@ -287,6 +289,11 @@ class PerformanceCard extends StatelessWidget {
                     barWidth: 4,
                     isStrokeCapRound: true,
                     dotData: const FlDotData(show: false),
+                    shadow: const Shadow(
+                      color: Color(0x3FE98C8C), // Glowing pink shadow
+                      blurRadius: 10,
+                      offset: Offset(0, 8),
+                    ),
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
@@ -303,15 +310,11 @@ class PerformanceCard extends StatelessWidget {
                   LineChartBarData(
                     spots: const [
                       FlSpot(0.0, 23),
-                      FlSpot(0.5, 25),
-                      FlSpot(1.0, 20),
-                      FlSpot(1.5, 15),
+                      FlSpot(1.0, 15),
                       FlSpot(2.0, 24),
-                      FlSpot(2.4, 45),
-                      FlSpot(3.0, 30),
-                      FlSpot(3.5, 15),
-                      FlSpot(4.0, 24),
-                      FlSpot(4.7, 39),
+                      FlSpot(3.0, 45),
+                      FlSpot(4.0, 15),
+                      FlSpot(5.0, 39),
                       FlSpot(5.2, 28),
                     ],
                     isCurved: true,
@@ -320,6 +323,11 @@ class PerformanceCard extends StatelessWidget {
                     barWidth: 4,
                     isStrokeCapRound: true,
                     dotData: const FlDotData(show: false),
+                    shadow: const Shadow(
+                      color: Color(0x3F4318FF), // Glowing purple shadow
+                      blurRadius: 10,
+                      offset: Offset(0, 8),
+                    ),
                     belowBarData: BarAreaData(
                       show: true,
                       gradient: LinearGradient(
@@ -336,7 +344,7 @@ class PerformanceCard extends StatelessWidget {
               ),
             ),
 
-            // Highlight dot on the purple curve at 2018 (x=3.0, y=30)
+            // Highlight dot on the purple curve at 2018 (x=3.0, y=45)
             Positioned(
               left: leftOffset - 6,
               top: dotTop - 6,

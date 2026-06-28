@@ -65,13 +65,13 @@ class TabletLayout extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: [
                                     Expanded(
-                                      flex: 1,
+                                      flex: 5,
                                       child: ProjectsCard(),
                                     ),
                                     SizedBox(width: 20),
                                     Expanded(
-                                      flex: 1,
-                                      child: CreatorsCard(),
+                                      flex: 4,
+                                      child: CreatorsCard(isDesktop: true),
                                     ),
                                   ],
                                 ),

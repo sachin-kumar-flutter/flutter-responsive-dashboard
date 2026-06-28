@@ -20,30 +20,30 @@ class RightPane extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header Title
-          const Padding(
-            padding: EdgeInsets.only(left: 4, bottom: 12),
-            child: Text(
-              'GENERAL 10:00 AM TO 7:00 PM',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 0.8,
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 16),
+              child: Text(
+                'GENERAL 10:00 AM TO 7:00 PM',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.8,
+                ),
               ),
             ),
           ),
 
           // Stacked panels (fits fully on the screen without scrolling in Desktop)
           Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(), // Scroll only if viewport is extremely small, otherwise sits perfectly
-              padding: EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: const [
                 CalendarCard(),
-                SizedBox(height: 16),
+                Spacer(),
                 BirthdayCard(),
-                SizedBox(height: 16),
+                Spacer(),
                 AnniversaryCard(),
               ],
             ),

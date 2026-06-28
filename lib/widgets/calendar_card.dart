@@ -67,7 +67,7 @@ class CalendarCard extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+      padding: const EdgeInsets.fromLTRB(30, 12, 30, 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -77,7 +77,7 @@ class CalendarCard extends StatelessWidget {
             children: [
               // Month select (rounded lavender-blue container with purple text/arrow)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
                   color: const Color(0xFFECEFFF),
                   borderRadius: BorderRadius.circular(20),
@@ -89,33 +89,33 @@ class CalendarCard extends StatelessWidget {
                       style: TextStyle(
                         color: Color(0xFF4318FF), // Purple text
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: 11,
                       ),
                     ),
-                    SizedBox(width: 6),
-                    Icon(Icons.keyboard_arrow_down, size: 16, color: Color(0xFF4318FF)),
+                    SizedBox(width: 4),
+                    Icon(Icons.keyboard_arrow_down, size: 14, color: Color(0xFF4318FF)),
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
               // Year select (plain text + arrow)
               const Row(
                 children: [
                   Text(
                     '2023',
                     style: TextStyle(
-                      color: Color(0xFF707EAE),
+                      color: Color(0xFF2B3674),
                       fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                      fontSize: 11,
                     ),
                   ),
-                  SizedBox(width: 6),
-                  Icon(Icons.keyboard_arrow_down, size: 16, color: Color(0xFF707EAE)),
+                  SizedBox(width: 4),
+                  Icon(Icons.keyboard_arrow_down, size: 14, color: Color(0xFF2B3674)),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 10),
 
           // Days of Week Header (Mo, Tu, We, Th, Fri, Sa, Su in bold indigo/navy)
           const Row(
@@ -129,7 +129,7 @@ class CalendarCard extends StatelessWidget {
               Expanded(child: _WeekdayHeader('Su')),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 4),
 
           // Days Grid
           GridView.builder(
@@ -137,9 +137,9 @@ class CalendarCard extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 7,
-              mainAxisSpacing: 8, // Row vertical gap
-              crossAxisSpacing: 0, // Zero horizontal spacing to connect highlight capsules
-              childAspectRatio: 1.1, // Aspect ratio to ensure cells are slightly wider than tall
+              mainAxisSpacing: 2, // Compact row vertical gap
+              crossAxisSpacing: 0,
+              childAspectRatio: 1.4, // Shorter cell height for compressed layout
             ),
             itemCount: calendarDays.length,
             itemBuilder: (context, index) {
@@ -153,8 +153,8 @@ class CalendarCard extends StatelessWidget {
               if (isDefaultSelected) {
                 return Center(
                   child: Container(
-                    width: 34,
-                    height: 34,
+                    width: 28,
+                    height: 28,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: Color(0xFFF4F7FE), // Light grey circle
@@ -164,7 +164,7 @@ class CalendarCard extends StatelessWidget {
                       day.toString(),
                       style: const TextStyle(
                         color: Color(0xFF2B3674),
-                        fontSize: 13,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -172,23 +172,22 @@ class CalendarCard extends StatelessWidget {
                 );
               }
 
-              // Selected Start & End range days (Days 27 & 30: Solid blue/purple circle)
-              final bool isStartOrEnd = highlightType == 'start' || highlightType == 'end';
-              if (isStartOrEnd) {
+              // Range Highlight - Start (Day 27: Centered dark purple circle)
+              if (highlightType == 'start') {
                 return Center(
                   child: Container(
-                    width: 34,
-                    height: 34,
+                    width: 28,
+                    height: 28,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color(0xFF4318FF), // Vibrant blue/purple
+                      color: Color(0xFF4318FF),
                     ),
                     alignment: Alignment.center,
                     child: Text(
                       day.toString(),
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 13,
+                        fontSize: 11,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -196,15 +195,37 @@ class CalendarCard extends StatelessWidget {
                 );
               }
 
-              // Selected Middle range days (Days 28 & 29: Purple text, no background)
-              final bool isMiddle = highlightType == 'middle';
-              if (isMiddle) {
+              // Range Highlight - End (Day 30: Centered dark purple circle)
+              if (highlightType == 'end') {
+                return Center(
+                  child: Container(
+                    width: 28,
+                    height: 28,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF4318FF),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      day.toString(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                );
+              }
+
+              // Range Highlight - Middle (Days 28 & 29: Bold purple text, no background)
+              if (highlightType == 'middle') {
                 return Center(
                   child: Text(
                     day.toString(),
                     style: const TextStyle(
-                      color: Color(0xFF4318FF), // Purple text
-                      fontSize: 13,
+                      color: Color(0xFF4318FF),
+                      fontSize: 11,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -217,7 +238,7 @@ class CalendarCard extends StatelessWidget {
                   day.toString(),
                   style: TextStyle(
                     color: isCurrentMonth ? const Color(0xFF2B3674) : const Color(0xFFB0BBD5),
-                    fontSize: 13,
+                    fontSize: 11,
                     fontWeight: isCurrentMonth ? FontWeight.bold : FontWeight.w500,
                   ),
                 ),
@@ -240,9 +261,9 @@ class _WeekdayHeader extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(
-          color: Color(0xFF2B3674), // Navy text matching mockup
+          color: Colors.black, // Navy text matching mockup
           fontWeight: FontWeight.bold,
-          fontSize: 13,
+          fontSize: 14,
         ),
       ),
     );

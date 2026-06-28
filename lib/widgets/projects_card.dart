@@ -10,20 +10,19 @@ class ProjectsCard extends StatelessWidget {
     required String imageUrl,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16), // Restored original spacing
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16), // Restored corner radius
-        color: isHighlighted ? const Color(0xFFD53A52) : const Color(0xFF1A2251),
+        borderRadius: BorderRadius.circular(16),
+        color: isHighlighted ? const Color(0xFFD53A52) : const Color(0xFF1B254B),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16), // Restored original padding
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
         children: [
           // Project image/thumbnail
           Container(
             width: 48,
-            height: 48, // Restored size
+            height: 48,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12), // Restored radius
+              borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
                 image: NetworkImage(imageUrl),
                 fit: BoxFit.cover,
@@ -43,7 +42,7 @@ class ProjectsCard extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 14, // Restored text size
+                    fontSize: 14,
                     letterSpacing: 0.1,
                   ),
                   maxLines: 1,
@@ -56,7 +55,7 @@ class ProjectsCard extends StatelessWidget {
                       'Project #$index',
                       style: TextStyle(
                         color: isHighlighted ? Colors.white.withValues(alpha: 0.8) : const Color(0xFFA3AED0),
-                        fontSize: 12, // Restored text size
+                        fontSize: 12,
                       ),
                     ),
                     const SizedBox(width: 4),
@@ -71,10 +70,10 @@ class ProjectsCard extends StatelessWidget {
                     InkWell(
                       onTap: () {},
                       child: const Text(
-                        'See details',
+                        'See project details',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12, // Restored text size
+                          fontSize: 12,
                           decoration: TextDecoration.underline,
                           decorationColor: Colors.white,
                           fontWeight: FontWeight.w500,
@@ -91,7 +90,7 @@ class ProjectsCard extends StatelessWidget {
           Icon(
             Icons.edit,
             color: isHighlighted ? Colors.white : const Color(0xFFA3AED0),
-            size: 18, // Restored icon size
+            size: 18,
           ),
         ],
       ),
@@ -102,10 +101,10 @@ class ProjectsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF0F1631),
+        color: const Color(0xFF111C44),
         borderRadius: BorderRadius.circular(20),
       ),
-      padding: const EdgeInsets.all(24), // Restored original padding
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -113,23 +112,25 @@ class ProjectsCard extends StatelessWidget {
             'All Projects',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18, // Restored title font size
+              fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20), // Restored title bottom spacing
+          const SizedBox(height: 20),
           _buildProjectItem(
             index: 1,
             isHighlighted: true,
             title: 'Technology behind the Blockchain',
             imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&auto=format&fit=crop&q=80',
           ),
+          const SizedBox(height: 16),
           _buildProjectItem(
             index: 1,
             isHighlighted: false,
             title: 'Technology behind the Blockchain',
             imageUrl: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=100&auto=format&fit=crop&q=80',
           ),
+          const SizedBox(height: 16),
           _buildProjectItem(
             index: 1,
             isHighlighted: false,
